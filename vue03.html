@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <title>Vue03</title>
+</head>
+<body>
+
+    <div id="app">
+        <p>{{myArray}}</p>
+        <p>{{myArray[1]}}</p>
+        <p>{{myObj}}</p>
+        <p>{{myObj[1].name}}: {{myObj[1].price}} Won</p>
+    </div>
+    
+    <script>
+        var objList = [
+            {name:'Kimchi', price: 3000},
+            {name:'Kimbab', price: 4000},
+            {name:'Ramen', price: 5000},
+        ]
+
+        new Vue({
+            el: '#app',
+            data: {
+                myArray: ['Kimchi', 'Kimbab', 'Ramen'],
+                myObj: objList,
+            }
+        })
+    </script>
+</body>
+</html>

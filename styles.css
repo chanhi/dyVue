@@ -1,0 +1,22 @@
+html {
+    width: 80%;
+    margin: 0 auto;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+button {
+    padding: 6px 12px;
+    border-radius: 5px;
+}
+
+button:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+input {
+    padding: 6px 12px;
+    border-radius: 5px;
+}
