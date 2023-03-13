@@ -19,6 +19,8 @@
         <p>오브젝트: {{myObj}}</p>
 
         {{$data}}
+        <li v-for="(value, key) in $data">{{key}} : {{value}}</li>
+        <!--v-for="(value, key, index)" 이런 식으로 인자의 위치로 값을 가져온다(네이밍은 상관 없음. *위치중요*)-->
     </div>
 
     <script>
