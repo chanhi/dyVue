@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="../styles.css">
+    <title>Vue01</title>
+</head>
+<body>
+    <div id="app">
+        <div :align="align_center">
+            <span>
+                <img src="../imges/testImg1.jpg" alt="html img" width="200px">
+                <div>직접 지정</div>
+            </span>
+            <span>
+                <img v-bind:src="filename" width="200px">
+                <div>v-bind로 지정한 방식</div>
+            </span>
+        </div>
+
+        <hr>
+
+        <div>
+            <div :align="align_right">
+                <a href="https://naver.com">네이버</a>
+            </div>
+            <div>
+                <a v-bind:href="myurl">v-bind 네이버</a>
+            </div>
+            <div :align="align_right">
+                <a :href="myurl">v-bind 네이버</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                filename: '../imges/testImg1.jpg',
+                myurl: 'https://naver.com',
+                align_right: 'right',
+                align_center: 'center',
+            }
+        })
+    </script>
+</body>
+</html>

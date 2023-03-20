@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="../styles.css">
+    <title>Vue02</title>
+    
+</head>
+<body>
+    <style>
+        .strike-through {
+            text-decoration: line-through;
+            color: #FF99CC;
+        }
+        .dark {
+            background-color: blueviolet;
+        }
+    </style>
+
+    <div id="app">
+        <p style="color: aqua; text-align: center;">문자색 직접 지정</p>
+        <p v-bind:style="{color: myColor, textAlign: textCenter}">문자색 v-bind로 지정</p>
+        <p :style="{color: myColor}">문자색 v-bind로 지정</p>
+         
+        <hr>
+
+        <p style="font-size: 20px;">글자 크기 직접 지정</p>
+        <p v-bind:style="{fontSize: mySize}">글자 크기 v-bind로 지정</p>
+        <p :style="{fontSize: mySize}">글자 크기 v-bind로 지정</p>
+
+        <hr>
+
+        <p style="background-color: #FF99CC;">배경색 직접 지정</p>
+        <p v-bind:style="{backgroundColor: myBgColor}">배경색 v-bind로 지정</p>
+        <p :style="{backgroundColor: myBgColor}">배경색 v-bind로 지정</p>
+
+        <hr>
+
+        <p class="strike-through">클래스 직접 지정</p>
+        <p :class="myClass">클래스 v-bind로 지정</p>
+        <p :class="[myClass, darkClass]">복수의 클래스 v-bind로 지정</p>
+        <p :class="{'strike-through': isOn}">데이터로 class 온/오프</p>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                myColor: 'aqua',
+                mySize: '20px',
+                myBgColor: '#FF99CC',
+                textCenter: 'center',
+                myClass: 'strike-through',
+                darkClass: 'dark',
+                isOn: true,
+            }
+        })
+    </script>
+</body>
+</html>

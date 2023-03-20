@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="../styles.css">
+    <title>Vue03</title>
+</head>
+<body>
+    <div id="app">
+        <input v-model="myName" placeholder="Your Name">
+        <p>Your name is {{myName}}</p>
+        <textarea v-model="myText" cols="30" rows="10"></textarea>
+        <p>Text: {{myText}}</p>
+        <p>Text length: {{myText.length}}</p>
+        
+        <hr>
+
+        <label><input type="checkbox" v-model="myCheck">{{myCheck}}</label><br>
+        <label><input type="checkbox" value="red" v-model="myChecks">red</label><br>
+        <label><input type="checkbox" value="blue" v-model="myChecks">blue</label><br>
+        <label><input type="checkbox" value="green" v-model="myChecks">green</label><br>
+        <p>Choosed color: {{myChecks}}</p>
+
+        <hr>
+
+        <label><input type="radio" value="red" v-model="picked">red</label><br>
+        <label><input type="radio" value="blue" v-model="picked">blue</label><br>
+        <label><input type="radio" value="green" v-model="picked">green</label><br>
+        <p>Choosed color: {{picked}}</p>
+
+        <hr>
+
+        <label><input type="radio" value="../imges/1jpg.jpg" v-model="filename">1</label><br>
+        <label><input type="radio" value="../imges/2.jpg" v-model="filename">2</label><br>
+        <img :src="filename">
+
+        <hr>
+
+        <select v-model="myColor">
+            <option disabled value="">Choose one Color</option>
+            <option>red</option>
+            <option>green</option>
+            <option>blue</option>
+            <option>orange</option>
+            <option>brown</option>
+        </select>
+        <p :style="{color: myColor}">color: {{myColor}}</p>
+
+        <hr>
+
+        <select v-model="myColor" multiple style="width: 150px;">
+            <option disabled value="">Choose Colors</option>
+            <option>red</option>
+            <option>green</option>
+            <option>blue</option>
+            <option>orange</option>
+            <option>brown</option>
+        </select>
+        <p :style="{color: myColors}">colors: {{myColors}}</p>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                myName: '',
+                myText: 'Today is monday',
+                myCheck: false,
+                myChecks: [],
+                picked: 'red',
+                filename: '',
+                myColor: '',
+                myColors: '',
+            }
+        })
+    </script>
+</body>
+</html>
