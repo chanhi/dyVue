@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <title>Vue03</title>
+</head>
+<body>
+    <style>
+        table {
+            width: 100%;
+            text-align: left;
+        }
+        table th {
+            padding: 12px;
+            border-bottom: 2px solid darkgray;
+        }
+        table td {
+            padding: 12px;
+        }
+        table tr:nth-of-type(even) {
+            background-color: rgba(0, 0, 255, 0.1);
+        }
+    </style>
+
+    <div id="app">
+        <h1>조건문</h1>
+        <label><input type="checkbox" v-model="myVisible">표시</label>
+        <p v-if="myVisible">check box ON</p>
+        <p v-else>check box OFF</p>
+        <h1>반복문</h1>
+        <h3>리스트 반복문</h3>
+        <ul>
+            <li style="list-style: none;" v-for="(item, index) in myArray">{{index}}: {{item}}</li>
+        </ul>
+        <h3>오브젝트 반복문</h3>
+        <ul>
+            <li v-for="item in objArray">{{item.name}}/{{item.price}}</li>
+        </ul>
+        숫자값 반복문
+        <ul>
+            <li v-for="n in 10">{{n}}x5={{n*5}}</li>
+        </ul>
+        <table>
+            <thead>
+                <th v-for="itme in header">{{itme}}</th>
+            </thead>
+            <tbody>
+                <tr v-for="line in ranking">
+                    <td v-for="item in line">{{item}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                myVisible: false,
+                myArray: ['python', 'java', 'vue.js'],
+                objArray: [
+                    {name: 'ramen', price: 1000},
+                    {name: 'kimbab', price: 2000},
+                    {name: 'bibimbab', price: 3000},
+                ],
+                header: ["프로그래밍언어",1998, 2003, 2008, 2013, 2018],
+                ranking: [
+                    ['java', 16, 1, 1, 2, 1],
+                    ['C', 1, 2, 2, 1, 2],
+                    ['C++', 2, 3, 3, 4, 3],
+                    ['python', 23, 11, 6, 7, 4],
+                    ['javascript', 20, 7, 8, 10, 7]
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="../styles.css">
+    <title>Vue04</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in myArray">{{item}}</li>
+        </ul>
+        <button v-on:click="addLast">맨 뒤에 추가</button><br>
+        <button v-on:click="addObj(3)">네번째에 추가</button><br>
+        <button v-on:click="changeObj(0)">첫번째를 변경</button><br>
+        <button v-on:click="deleteObj(1)">두번째를 삭제</button><br>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                myArray: ['first', 'second', 'third', 'forth', 'fifth']
+            },
+            methods: {
+                addLast: function(){
+                    this.myArray.push(" [add last] ");
+                },
+                addObj: function(index){
+                    this.myArray.splice(index, 0, " [add] ");
+                },
+                changeObj: function(index){
+                    this.myArray.splice(index, 1, ' [change] ');
+                },
+                deleteObj: function(index){
+                    this.myArray.splice(index, 1);
+                },
+            }
+        })
+    </script>
+</body>
+</html>

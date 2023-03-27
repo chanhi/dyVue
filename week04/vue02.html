@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="../styles.css">
+    <title>Vue02</title>
+    
+</head>
+<body>
+    <div id="app">
+        <h1>이벤트 예제</h1>
+        <button value="good" :disabled="isCheck" v-on:click="onClick">good button</button>
+        <hr>
+        <h2>다양한 카운트 만들기</h2>
+        <p>Count: {{count}}</p>
+        <button v-on:click="countUp(1)">1씩 증가</button>
+        <button @click="countUp(3)">3씩 증가</button>
+        <button @click="countUp(10)">10씩 증가</button>
+        <button @click="countUp(100)">100씩 증가</button>
+        <hr>
+        <h2>enter를 누르면 alret</h2>
+        <input @keyup.enter="showAlert" v-model="myText">
+        <input @keyup.enter.shift="showAlert1" v-model="myText">
+        <p>{{myText}}</p>
+    </div>
+
+    <script>
+        function good() {
+            alert("Goooooooood!");
+        }
+
+        new Vue({
+            el: '#app',
+            data: {
+                isCheck: false,
+                count:0,
+                myText: 'Hello!',
+            },
+            methods: {
+                onClick: function() {
+                    this.isCheck = true;
+                    good();
+                },
+                countUp: function(value) {
+                    this.count += value;
+                },
+                showAlert: function() {
+                    alert("Enter키를 눌렀습니다.");
+                },
+                showAlert1: function() {    
+                    alert("Enter + shift키를 눌렀습니다.");
+                },
+            }
+        })
+    </script>
+</body>
+</html>

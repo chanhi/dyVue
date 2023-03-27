@@ -37,6 +37,17 @@ https://v3-docs.vuejs-korea.org/guide/essentials/template-syntax.html
   - 단 하나의 표현식만 쓸 수 있다.
 - v-text="myData"
 - v-html="myData"
+- javascript 표현식 사용
+```html
+{{ number + 1 }}
+
+{{ ok ? '예' : '아니오' }}
+
+{{ message.split('').reverse().join('') }}
+
+<div :id="`list-${id}`"></div>
+
+```
 
 ## 이벤트
 
