@@ -20,7 +20,7 @@ https://v3-docs.vuejs-korea.org/guide/essentials/template-syntax.html
       el: '#appID',
       data: {
           myData: 'data',
-      }
+      },
       methods: {
           myFunc: function() {
               ...
@@ -48,6 +48,20 @@ https://v3-docs.vuejs-korea.org/guide/essentials/template-syntax.html
 <div :id="`list-${id}`"></div>
 
 ```
+
+## 함수(function)
+
+```html
+<button v-on:click="countUp(1)">1씩증가</button>
+...
+
+methods: {
+          countUp: function(value) {
+              this.count+=value;
+          }
+```
+- ```methods``` 에 구현
+- parameter(인자) 전달 가능
 
 ## 이벤트
 
