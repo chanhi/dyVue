@@ -53,12 +53,17 @@ https://v3-docs.vuejs-korea.org/guide/essentials/template-syntax.html
 
 ```html
 <button v-on:click="countUp(1)">1씩증가</button>
+<input type="text" @input="textModifier" />
 ...
 
 methods: {
           countUp: function(value) {
               this.count+=value;
-          }
+          },
+          textModifier: funtion(event) {
+              printf(event.target.value);
+          } //이런식으로 js사용해서 실시간 데이터 입력값 전달 가능
+}
 ```
 - ```methods``` 에 구현
 - parameter(인자) 전달 가능
