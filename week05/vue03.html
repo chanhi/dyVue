@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script><!--google chart cdn-->
+    <link rel="stylesheet" href="../styles.css">
+    <title>Vue01</title>
+</head>
+<body>
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+    <div id="app">
+            <li v-for="(item, c) in dataArray" v-if="c>0">
+                {{item[0]}}: {{item[1]}}
+                <button @click="addOne(c)">한표</button>
+            </li>
+    </div>
+    <script type="text/javascript">
+        var myData = [
+            ['food', 'prefered person'],
+            ['일식',     11],
+            ['인도식',      2],
+            ['중식',  5],
+            ['양식', 4],
+            ['한식',    7]
+        ]
+        
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+        
+        function drawChart() {
+            
+            var data = google.visualization.arrayToDataTable(myData);
+            
+            var options = {
+                title: 'My Daily Activities',
+                "is3D": true,
+            };
+            
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            
+            chart.draw(data, options);
+        }
+    </script>
+    <script>
+        new Vue({
+            el: '#app', 
+            data: {
+                dataArray: myData
+            },
+            methods: {
+                addOne: function(value) {
+                    var obj = this.dataArray[value];
+                    obj[1]++;
+                    this.dataArray.splice(value, 1, obj);
+                    drawChart();
+                }
+            }
+        })
+    </script>
+</body>
+</html>

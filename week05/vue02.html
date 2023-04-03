@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="../styles.css">
+    <title>Vue02</title>
+</head>
+<body>
+    <div id="app">
+        <h1>배열 기능과 구구단 출력</h1>
+        <button @click="addNum()">Add</button>
+        <button @click="sortData()">Sort</button>
+        <button @click="showUn()">Visable</button>    
+        <ul>
+            <li v-for="(value, index) in myArray">{{value}}
+                <button @click="countUp(index)">변경</button>
+                <button @click="deleteNum(index)">삭제</button>
+            </li>
+        </ul>
+        <br>
+        <hr>
+        <ul v-if="show">
+            <li v-for="item in myArray">
+                <p v-for="item2 in 9">{{item}}x{{item2}}={{item * item2}}</p>
+            </li>
+        </ul>
+    </div>
+    <script>
+    
+        new Vue({
+            el: '#app', 
+            data: {
+                myArray: [2,3,4,5,6,7,8,9],
+                show: false,
+            },
+            methods: {
+                countUp: function(index){
+                    this.myArray.splice(index, 1, this.myArray[index] + 1); //splice(index에서, n개만큼, 이걸로 바꾼다)
+                    //this.myArray[index] = this.myArray[index] + 1;
+                    //console.log(this.myArray) 배열을 반환하지 않기 때문에 실시간으로 반영이 안됨
+                },
+                sortData: function() {
+                    this.myArray = this.myArray.filter(function(item, idx, array){
+                        return array.indexOf(item) === idx;
+                    });
+
+                    this.myArray.sort(function(a,b){
+                        return (a < b ? -1 : 1);
+                    });
+                },
+                deleteNum: function(index){
+                    this.myArray.splice(index, 1);
+                },
+                addNum: function(){
+                    this.myArray.push(1);
+                },
+                showUn: function(){
+                    if(this.show === false)
+                        this.show = true;
+                    else
+                        this.show = false;    
+                }
+            }
+        })
+    </script>
+</body>
+</html>

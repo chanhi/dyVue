@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="../styles.css">
+    <title>Vue01</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in myArray">{{item}}</li>
+        </ul>
+        <button @click="sortDataA(myArray)">sort(ASE)</button>
+        <button @click="sortDataB(myArray)">sort(DESE)</button>
+        <br>
+        <hr>
+        <ul>
+            <li v-for="item in numArray" v-if="item % 2 == 0">{{item}}</li>
+        </ul>
+        <hr>
+        <ul>
+            <li v-for="item in nNumArray">{{item}}</li>
+        </ul>
+        <button @click="evenData()">짝수만 표시</button>
+        <button @click="evenDataA()">홀수만 표시</button>
+    </div>
+    <script>
+    
+        new Vue({
+            el: '#app', 
+            data: {
+                myArray: ['one', 'two', 'three', 'four', 'five'],
+                numArray: [1,2,3,4,5,6],
+                nNumArray: [1,2,3,4,5,6],
+            },
+            methods: {
+                sortDataA: function(listdata) {
+                    listdata.sort(function(a,b){
+                        return (a < b ? -1 : 1);
+                    }); //알파벳순 오름차순 정렬
+                },
+                sortDataB: function(listdata) {
+                    listdata.sort(function(a,b){
+                        return (a > b ? -1 : 1);
+                    }); //알파벳순 내림차순 정렬
+                },
+                evenData: function() {
+                    this.nNumArray = this.nNumArray.filter(
+                        function(value) {
+                            return value % 2 == 0;
+                        }
+                    )
+                },
+                evenDataA: function() {
+                    this.nNumArray = this.nNumArray.filter(
+                        function(value) {
+                            return value % 2 == 1;
+                        }
+                    )
+                }
+            }
+        })
+    </script>
+</body>
+</html>
