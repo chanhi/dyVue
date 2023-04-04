@@ -9,14 +9,45 @@
     <title>assignment1</title>
 </head>
 <body>
+    <style>
+        button {
+            margin: 5px;
+            padding: 7px 15px;
+        }
+        #header {
+            margin: 10px 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+        #me {
+            display: flex;
+            flex-direction: column;
+        }
+        #h-btn {
+            display: flex;
+            align-items: center;
+        }
+        #title99 {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
     <div id="app">
         <h1>구구단 출력</h1>
-        <button @click="addNum(myArray)">Add</button>
-        <button @click="deleteNum(myArray)">Delete</button>
+        <div id="header">
+            <div id="h-btn">
+                <button @click="addNum(myArray)">Add</button>
+                <button @click="deleteNum(myArray)">Delete</button>
+            </div>
+            <div id="me">
+                <span>학번: 20202289</span>
+                <span>이름: 정찬희</span>
+            </div>
+        </div>
         <hr>
         <ul style="display: flex; padding: 0;">
-            <li style="list-style: none; margin: 0 10px" v-for="item in myArray">
-                <p>{{item}}단</p>
+            <li style="list-style: none; padding: 0 10px; margin: 0 6px; border: 1px solid black; border-radius: 5px;" v-for="item in myArray">
+                <span id="title99">{{item}}단</span>
                 <p v-for="item2 in 9">{{item}}x{{item2}}={{item * item2}}</p>
             </li>
         </ul>
@@ -29,25 +60,15 @@
                 myArray: [2,3,4,5,6,7,8,9],
             },
             methods: {
-                countUp: function(index){
-                    this.myArray.splice(index, 1, this.myArray[index] + 1); //splice(index에서, n개만큼, 이걸로 바꾼다)
-                    //this.myArray[index] = this.myArray[index] + 1;
-                    //console.log(this.myArray) 배열을 반환하지 않기 때문에 실시간으로 반영이 안됨
-                },
-                sortData: function() {
-                    this.myArray = this.myArray.filter(function(item, idx, array){
-                        return array.indexOf(item) === idx;
-                    });
-
-                    this.myArray.sort(function(a,b){
-                        return (a < b ? -1 : 1);
-                    });
-                },
                 deleteNum: function(list){
                     this.myArray.splice(list.length-1, 1);
                 },
                 addNum: function(list){
-                    this.myArray.push(list[list.length-1] + 1);
+                    if(list.length === 0){
+                        this.myArray.push(2);
+                    } else{
+                        this.myArray.push(list[list.length-1] + 1);
+                    }
                 },
             }
         })
