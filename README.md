@@ -118,3 +118,11 @@ methods: {
 ```
 
 <img src="/imges/README1.png" width="700px">
+
+## computed, watch
+#### computed
+- 너무 많은 연산을 템플릿 안에서 하면 코드가 비대해지고 유지보수가 어렵다.
+- computed 속성은 종속 대상을 따라 저장(캐싱)
+- computed 속성은 해당 속성이 종속된 대상이 변경될 때만 함수를 실행
+
+#### watch

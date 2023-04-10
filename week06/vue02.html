@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="../styles.css">
+    <title>Vue03</title>
+</head>
+<body>
+    <div id="app">
+        <input v-model.number="price" type="number" />won x
+        <input v-model.number="count" type="number" />개
+        <p>합계{{sum}} 원</p>
+        <p>소비세 포함 금액{{taxIncluded}} won</p>
+
+        <hr>
+
+        <p>50자 이내로 입력</p>
+        <textarea v-model="myText"></textarea>
+        <p v-bind:style="{color: computedColor}">남은 글자는 {{remaining}}</p>
+
+        <hr>
+
+        <p :style="{backgroundColor: mixColor}">{{mixColor}}</p>
+        <input type="range" v-model="R" min="0" max="255" /><br>
+        <input type="range" v-model="G" min="0" max="255" /><br>
+        <input type="range" v-model="B" min="0" max="255" /><br>
+
+        <hr>
+
+        <input v-model="findWord" />
+        <ul v-for="item in findItems">
+            <li>{{item}}</li>
+        </ul>
+    </div>  
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                myText: 'input text',
+                findWord: '',
+                items: ['서울특별시', '인천광역시', '대구시', '대전시', '부산광역시', '제주시'],
+                R: 255,
+                G: 150,
+                B: 100,
+                price: 100,
+                count: 1,
+            },
+            computed: {
+                remaining: function() {
+                    return 50 - this.myText.length;
+                },
+                computedColor: function() {
+                    col = "green";
+                    if(this.remaining < 10) {
+                        col = "orange";
+                    }
+                    if(this.remaining < 1 ){
+                        col = "red";
+                    }
+                    return col;
+                },
+                findItems: function() {
+                    if(this.findWord){
+                        return this.items.filter(function(value) {
+                            return (value.indexOf(this.findWord) > -1)
+                        }, this)
+                    } else{
+                        return this.items
+                    }
+                },
+                mixColor: function() {
+                    var ans = "RGB(" + this.R + "," + this.G + "," + this.B + ")";
+                    return ans;
+                },
+                taxIncluded: function() {
+                    return this.sum * 1.08;
+                },  
+                sum: function() {
+                    return this.price * this.count;
+                },
+            }
+        })
+    </script>
+</body>
+</html>

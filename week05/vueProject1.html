@@ -10,6 +10,9 @@
 </head>
 <body>
     <style>
+        body{
+            background-color: rgb(236, 236, 236);
+        }
         button {
             margin: 5px;
             padding: 7px 15px;
@@ -46,9 +49,9 @@
         </div>
         <hr>
         <ul style="display: flex; padding: 0;">
-            <li style="list-style: none; padding: 0 10px; margin: 0 6px; border: 1px solid black; border-radius: 5px;" v-for="item in myArray">
+            <li style="list-style: none; padding: 0 10px; margin: 0 6px; border: 1px solid black; border-radius: 5px; background-color: rgb(253, 252, 252);" v-for="item in myArray">
                 <span id="title99">{{item}}단</span>
-                <p v-for="item2 in 9">{{item}}x{{item2}}={{item * item2}}</p>
+                <p v-for="item2 in multData">{{item}}x{{item2}}={{item * item2}}</p>
             </li>
         </ul>
     </div>
@@ -58,16 +61,23 @@
             el: '#app', 
             data: {
                 myArray: [2,3,4,5,6,7,8,9],
+                multData: 9,
             },
             methods: {
                 deleteNum: function(list){
+                    if(list.length > 8) {
+                        this.multData--;
+                    }
                     this.myArray.splice(list.length-1, 1);
                 },
                 addNum: function(list){
                     if(list.length === 0){
                         this.myArray.push(2);
-                    } else{
+                    } else {
                         this.myArray.push(list[list.length-1] + 1);
+                    }
+                    if(list.length > 8) {
+                        this.multData++;
                     }
                 },
             }
