@@ -38,15 +38,12 @@ https://v3-docs.vuejs-korea.org/guide/essentials/template-syntax.html
 - v-text="myData"
 - v-html="myData"
 - javascript 표현식 사용
+
 ```html
-{{ number + 1 }}
-
-{{ ok ? '예' : '아니오' }}
-
-{{ message.split('').reverse().join('') }}
+{{ number + 1 }} {{ ok ? '예' : '아니오' }} {{
+message.split('').reverse().join('') }}
 
 <div :id="`list-${id}`"></div>
-
 ```
 
 ## 함수(function)
@@ -54,18 +51,12 @@ https://v3-docs.vuejs-korea.org/guide/essentials/template-syntax.html
 ```html
 <button v-on:click="countUp(1)">1씩증가</button>
 <input type="text" @input="textModifier" />
-...
-
-methods: {
-          countUp: function(value) {
-              this.count+=value;
-          },
-          textModifier: funtion(event) {
-              printf(event.target.value);
-          } //이런식으로 js사용해서 실시간 데이터 입력값 전달 가능
-}
+... methods: { countUp: function(value) { this.count+=value; }, textModifier:
+funtion(event) { printf(event.target.value); } //이런식으로 js사용해서 실시간
+데이터 입력값 전달 가능 }
 ```
-- ```methods``` 에 구현
+
+- `methods` 에 구현
 - parameter(인자) 전달 가능
 
 ## 이벤트
@@ -88,6 +79,11 @@ methods: {
 ```html
 <li v-for="(value, key, index) in $data">{{index}}.{{key}} : {{value}}</li>
 ```
+
+## 조건문
+
+- v-if
+  - 참일 때 실행
 
 ## 속성 바인딩
 
@@ -120,9 +116,14 @@ methods: {
 <img src="/imges/README1.png" width="700px">
 
 ## computed, watch
+
 #### computed
+
 - 너무 많은 연산을 템플릿 안에서 하면 코드가 비대해지고 유지보수가 어렵다.
 - computed 속성은 종속 대상을 따라 저장(캐싱)
 - computed 속성은 해당 속성이 종속된 대상이 변경될 때만 함수를 실행
 
 #### watch
+
+- 데이터 변경에 대한 응답
+- 비동기식 또는 시간이 많이 소요되는 조작을 수행하려는 경우에 가장 유용

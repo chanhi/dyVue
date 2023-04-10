@@ -1,72 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script> src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"</script>
-    <link rel="stylesheet" href="../styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
+    <link rel="stylesheet" href="../styles.css" />
     <title>Vue03</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="app">
-       <p>금지문자는, {{forbiddenText}}</p>
-       <textarea v-model="inputText" cols="30" rows="10"></textarea>
+      <p>금지문자는, {{forbiddenText}}</p>
+      <textarea v-model="inputText" cols="30" rows="10"></textarea>
 
-       <hr>
+      <hr />
 
-       <h4>남은시간이 0초가 되면 alert</h4>
-       <p>앞으로 {{restSec}}초</p>
-       <button @click="startTimer">START</button>
+      <h4>남은시간이 0초가 되면 alert</h4>
+      <p>앞으로 {{restSec}}초</p>
+      <button @click="startTimer">START</button>
 
-       <hr>
+      <hr />
 
-       <p>값은 {{animeNumber}}입니다.</p>
-       <input v-model.number="myNumber" type="number">
-    </div>  
+      <p>값은 {{animeNumber}}입니다.</p>
+      <input v-model.number="myNumber" type="number" />
+    </div>
 
     <script>
-        new Vue({
-            el: '#app',
-            data: {
-                forbiddenText: '바보',
-                inputText: '나쁜말을 쓰면 안됩니다.',
-                restSec: 5,
-                timerObj: null,
-                myNumber: 0,
-                tweenedNumber: 0,
-            },
-            methods: {
-                startTimer: function(){
-                    this.restSec = 5;
-                    this.timerObj = setInterval(()=>{this.restSec--}, 1000);
-                }
-            },
-            watch: {//감지
-                inputText: function(){
-                    var pos = this.inputText.indexOf(this.forbiddenText);
-                    if(pos>=0) { //값이 있으면
-                        alert(this.forbiddenText + "는 입력할 수 없습니다");
-                        this.inputText = this.inputText.substr(0, pos);
-                    }
-                },
-                restSec: function() {
-                    if(this.restSec <=0) {
-                        alert("제한시간 입니다");
-                        clearInterval(this.timerObj);
-                    }
-                },
-                myNumber: function() {//data의 tweenedNumber 프로퍼티를 1초에 myNumber까지 증가시킨다
-                    TweenMax.to(this.$data, 1, {tweenedNumber: this.myNumber})
-                }
-            },
-            computed: {//tweenedNumber 값이 변경되는 변화중 애니매이션을 산출
-                animeNumber: function() {
-                    return this.tweenedNumber.toFixed(0);//반올림
-                }
+      new Vue({
+        el: "#app",
+        data: {
+          forbiddenText: "바보",
+          inputText: "나쁜말을 쓰면 안됩니다.",
+          restSec: 5,
+          timerObj: null,
+          myNumber: 0,
+          tweenedNumber: 0,
+        },
+        methods: {
+          startTimer: function () {
+            this.restSec = 5;
+            this.timerObj = setInterval(() => {
+              this.restSec--;
+            }, 1000);
+          },
+        },
+        watch: {
+          //감지
+          inputText: function () {
+            var pos = this.inputText.indexOf(this.forbiddenText);
+            if (pos >= 0) {
+              //값이 있으면
+              alert(this.forbiddenText + "는 입력할 수 없습니다");
+              this.inputText = this.inputText.substr(0, pos);
             }
-        })
+          },
+          restSec: function () {
+            if (this.restSec <= 0) {
+              alert("제한시간 입니다");
+              clearInterval(this.timerObj);
+            }
+          },
+          myNumber: function () {
+            //data의 tweenedNumber 프로퍼티를 1초에 myNumber까지 증가시킨다
+            TweenMax.to(this.$data, 1, { tweenedNumber: this.myNumber });
+          },
+        },
+        computed: {
+          //tweenedNumber 값이 변경되는 변화중 애니매이션을 산출
+          animeNumber: function () {
+            return this.tweenedNumber.toFixed(0); //반올림
+          },
+        },
+      });
     </script>
-</body>
+  </body>
 </html>
