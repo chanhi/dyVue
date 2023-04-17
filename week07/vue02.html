@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown.js/0.4.0/markdown.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="../styles.css" />
+    <title>Vue02</title>
+</head>
+<body>
+    <div id="app">
+        <textarea v-model="input" cols="50" rows="20"></textarea>
+        <div v-html="convertMarkdown"></div>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+              input: ''
+            },
+            computed: {
+                convertMarkdown: function() {
+                    return markdown.toHTML(this.input);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

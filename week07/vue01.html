@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="../styles.css" />
+    <title>Vue01</title>
+  </head>
+  <body>
+    <h2>제한 시간내에 문자 입력하기</h2>
+    <div id="app">
+      <span>금지문자(","로 나누어 복수입력 가능):</span>
+      <input :disabled="!isWritable" v-model="forbiddenText" type="text">
+
+      <br>
+
+      <span>제한시간을 입력하세요:</span>
+      <input :disabled="!isWritable" v-model="inputTime" type="number">
+      <button @click="startTimer">START</button>
+      <p>남은시간 {{restSec}}초</p>
+      <hr />
+
+      <textarea :disabled="isWritable" v-model="inputText" cols="30" rows="10"></textarea>
+
+      <p v-if="isResult">{{wordCnt}}개의 문자를 입력하였습니다.</p>
+      <p v-if="isResult">벌점: {{resultScore}} (금지문자 1개당 12점)</p>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          forbiddenText: "바보,멍청이",
+          inputTime: 0,
+          restSec: 0,
+          isWritable : true,
+					isResult : false,
+					inputText : "",
+					forbiddenCnt : 0,
+        },
+        methods: {
+          startTimer: function () {
+            this.isWritable =  false;
+            this.restSec = this.inputTime;
+            this.timerObj = setInterval(() => {
+              this.restSec--;
+            }, 1000);
+            this.isResult = false;
+          },
+        },
+        computed: {
+          resultScore: function() {
+						return this.forbiddenCnt * 12;
+					}
+        },
+        watch: {
+          //감지
+          inputText: function () {
+            var arrForbiddenText = this.forbiddenText.split(",");
+            for(var i=0; i<arrForbiddenText.length; i++) {
+              var pos = this.inputText.indexOf(arrForbiddenText[i]);
+              if (pos >= 0) {
+                //값이 있으면
+                alert(this.forbiddenText + "는 입력할 수 없습니다");
+                this.inputText = this.inputText.substr(0, pos);
+                this.limitTime = this.limitTime +  10;
+								this.forbiddenCnt ++;
+            }
+            }
+          },
+          restSec: function () {
+            if (this.restSec <= 0) {
+              alert("제한시간 입니다");
+              clearInterval(this.timerObj);
+              this.isWritable = true;
+							this.isResult = true;
+							this.wordCnt = this.inputText.length;
+            }
+          },
+        }
+      });
+    </script>
+  </body>
+</html>
