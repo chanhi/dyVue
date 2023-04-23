@@ -48,11 +48,11 @@
         watch: {
           //감지
           inputText: function () {
-            var pos = this.inputText.indexOf(this.forbiddenText);
+            var pos = this.inputText.indexOf(this.forbiddenText); // 금지문자 첫 인덱스 반환
             if (pos >= 0) {
               //값이 있으면
               alert(this.forbiddenText + "는 입력할 수 없습니다");
-              this.inputText = this.inputText.substr(0, pos);
+              this.inputText = this.inputText.substr(0, pos); //금지문자의 첫 인덱스 까지 자르기 때문에 뒤에는 사라짐
             }
           },
           restSec: function () {
