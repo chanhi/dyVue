@@ -128,3 +128,30 @@ funtion(event) { printf(event.target.value); } //이런식으로 js사용해서 
 
 - 데이터 변경에 대한 응답
 - 비동기식 또는 시간이 많이 소요되는 조작을 수행하려는 경우에 가장 유용
+
+## vue application
+
+- ```npm install -g @vue/cli```
+- ```vue create project_name```
+* ```Set-ExecutionPolicy -ExecutionPolicy RemoteSigned``` 권한 설정 변경
+- ```npm run lint -- --fix```  error  Newline required at end of file but not found  eol-last 일 
+- view 표현 방법
+```html
+<template>
+  <div class="test">
+      <h1>{{title}}</h1>
+      <h2 v-html="htmlText"></h2>
+  </div>
+</template>
+
+<script>
+export default {
+  data () {
+    return {
+      title: 'Test Page',
+      htmlText: '<p style="color:blue">v-html</p>'
+    }
+  }
+}
+</script>
+```
