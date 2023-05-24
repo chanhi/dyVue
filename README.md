@@ -164,6 +164,7 @@ export default {
  ## 프로젝트 구상
 
  * Vuetify: vue 탬플릿
+ * https://madewithvuejs.com/
  * 음악 스트리밍 사이트
  * 영화 사이트
  * 옷 사이트
