@@ -131,10 +131,17 @@ funtion(event) { printf(event.target.value); } //이런식으로 js사용해서 
 
 ## vue application
 
-- ```npm install -g @vue/cli```
-- ```vue create project_name```
-* ```Set-ExecutionPolicy -ExecutionPolicy RemoteSigned``` 권한 설정 변경
-- ```npm run lint -- --fix```  error  Newline required at end of file but not found  eol-last 일 
+#### vue-cli
+- Vue Command Line Interface
+- ```npm install -g @vue/cli``` : 글로벌로 설치
+- ```vue create project_name``` : project_name을 가진 vue 프로젝트 생성
+  - default 생성: babel, eslint
+  - manually 옵션 생성: router, vuex 등 추가 가능 (Typescript..)
+  - ```vue ui``` : GUI 생성(프로젝트 매니저)
+* ```Set-ExecutionPolicy -ExecutionPolicy RemoteSigned``` : 권한 오류 발생 시 권한 설정
+- ```cd /project_name``` : 생성된 프로젝트로 이동
+  - ```npm run serve``` : 프로젝트 실행
+  - ```npm run lint -- --fix``` : fix 관련 오류 발생 시(eslint에 의한 문법 맞춤)
 - view 표현 방법
 ```html
 <template>
@@ -155,12 +162,41 @@ export default {
 }
 </script>
 ```
-
-- componets: 여러개의 콘텐츠 컴포넌트로 분할
-- views: 보여지는 부분
-- router: 보여질 view 경로 설정
-- App.vue: 최종적으로 보여줄 메인 페이지, 각 컴포넌트와 뷰를 임포트하여 보여줌
-
+-프로젝트 파일 구조
+  - node_modules: vue를 실행하기 위한 모듈을 모아둔 폴더
+  - public : 실제 웹에서 보이는 부분
+  - src : 프로젝트를 구성하는 실질적인 폴더
+    - assets : 이미지, 파비콘과 같은 콘텐츠를 저장하는 폴더
+    - componets: 여러개의 콘텐츠 컴포넌트로 분할
+    ```
+    <template>
+      <div></div>
+    </template>
+    <script>
+      export default {
+        name: '', //컴포넌트 이름
+        components: {}, //외부 컴포넌트 import 후 이곳에 등록하여 사용
+        data() {
+          return {}; //변수 생성, 생성된 변수는 this를 통해 접근
+        },
+        setup() {}, //컴포지션 api
+        created() {}, //컴포넌트가 생성되면 실행
+        mounted() {}, //탬플릿에 작성한 html코드가 랜더링 된 후 실행
+        unmounted() {}, //컴포넌트를 빠져나갈 때 실행
+        methods: {} //컴포넌트 내에서 사용할 메도스 정의
+    </script>
+    ```
+      - 재사용 가능(동일 기능을 컴포넌트화 하여 재사용)
+      - 
+      - snippet: 등록된 코드를 단축키를 이용해 바로 사용하는 기능
+      - Vue.json 피일에 코드를 등록```"prefix": "snippet_name", "body": [내용], "description": 설명```
+    - views: 보여지는 부분
+    - router: 보여질 view 경로 설정
+    - store: Vuex를 통해 사용하는 전역변수 저장소
+    - App.vue: 최종적으로 보여줄 메인 페이지, 각 컴포넌트와 뷰를 임포트하여 보여줌
+    - main.js: 가장 상위 js파일(vue, router, store 사용 선언과 createApp을 통한 앱 생성)
+  -package.json: 설치된 의존성 패키지, 실행 스크립트, 프로젝트 이름 등 설정과 패키지에 대한 정보가 담겨있다
+  
  ## 프로젝트 구상
 
  * Vuetify: vue 탬플릿
